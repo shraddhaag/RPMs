@@ -12,7 +12,7 @@ Source0:        %{pypi_source}
 BuildArch:      noarch
  
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(fedora-messaging)
+BuildRequires:  %{py3_dist fedora-messaging}
 BuildRequires:  python3dist(setuptools)
 
 %description
@@ -30,8 +30,6 @@ A schema package for Fedora Happiness Packets
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
 
 %build
 %py3_build
@@ -46,9 +44,11 @@ rm -rf %{pypi_name}.egg-info
 %doc README
 %license LICENSE
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
+%{python3_sitelib}/%{pypi_name}-*.egg-info/
 
 %changelog
 * Wed Jun 26 2019 Shraddha Agrawal <shraddha.agrawal000@gmail.com> - 1.0.0-1
-- Initial package.
+- Add test package and  MANIFEST file.
+* Tue Mar 12 2019 Shraddha Agrawal <shraddha.agrawal000@gmail.com> - 0.1.2-1
+- Initial Package.
 
